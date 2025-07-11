@@ -23,7 +23,7 @@ A full-stack MERN-based Store Rating platform that supports three roles: **Admin
 - Logout securely.
 
 🖼️ Screenshot:  
-![Admin Dashboard](./images/admin_dashboard.png)
+![Admin Dashboard](https://i.ibb.co/LDfB1GD1/image.png)
 
 ---
 
@@ -36,7 +36,7 @@ A full-stack MERN-based Store Rating platform that supports three roles: **Admin
 - Logout securely.
 
 🖼️ Screenshot:  
-![Store Dashboard](./images/store_dashboard.png)
+![Store Dashboard](https://i.ibb.co/YFcJxDGd/Store.png)
 
 ---
 
@@ -49,7 +49,7 @@ A full-stack MERN-based Store Rating platform that supports three roles: **Admin
 - Logout securely.
 
 🖼️ Screenshot:  
-![User Dashboard](./images/user_dashboard.png)
+![User Dashboard](https://i.ibb.co/kVsnw8X4/User.png)
 
 ---
 
