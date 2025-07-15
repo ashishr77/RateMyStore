@@ -1,4 +1,3 @@
-// src/pages/Signup.jsx
 import { useState } from 'react';
 import API from '../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -11,17 +10,38 @@ const Signup = () => {
     address: '',
     password: '',
   });
+  const [nameError, setNameError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'name') {
+      const trimmedValue = value.trim();
+      const nameRegex = /^[a-zA-Z\s]*$/; // Allow letters and spaces
+      const letterCount = (trimmedValue.match(/[a-zA-Z]/g) || []).length;
+
+      if (!trimmedValue) {
+        setNameError('Name cannot be empty or only spaces');
+      } else if (!nameRegex.test(value)) {
+        setNameError('Name must contain only letters and spaces');
+      } else if (letterCount < 3) {
+        setNameError('Name must contain at least 3 letters');
+      } else {
+        setNameError('');
+      }
+    }
+
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (nameError || !form.name.trim()) {
+      alert('Please fix the name field error before submitting');
+      return;
+    }
     try {
-      // const res = await API.post('/register', form);
-      await API.post('/register', form);
+      await API.post('/register', { ...form, name: form.name.trim() });
       alert('Signup successful! Please log in.');
       navigate('/login');
     } catch (err) {
@@ -45,8 +65,9 @@ const Signup = () => {
             value={form.name}
             onChange={handleChange}
             required
-            className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
+            className={`mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring ${nameError ? 'border-red-500' : 'border-gray-300 focus:ring-blue-400'}`}
           />
+          {nameError && <p className="text-red-500 text-sm mt-1">{nameError}</p>}
         </div>
 
         <div>
@@ -88,6 +109,7 @@ const Signup = () => {
         <button
           type="submit"
           className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+          disabled={!!nameError}
         >
           Sign Up
         </button>
