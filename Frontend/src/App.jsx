@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 const ProtectedRoute = ({ children, role }) => {
   const { auth, loading } = useAuth();
 
-  if (loading) return <div className="text-center mt-10">Loading...</div>; // ⏳ Wait for restore
+  if (loading) return <div className="text-center mt-10">Loading...</div>; 
 
   if (!auth.token) return <Navigate to="/login" />;
   if (role && auth.user.role !== role) return <Navigate to="/login" />;
