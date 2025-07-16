@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({ user: null, token: null });
-  const [loading, setLoading] = useState(true); // 🟡 Loading state
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     if (user && token) {
       setAuth({ user, token });
     }
-    setLoading(false); // ✅ Load complete
+    setLoading(false); 
   }, []);
 
   const login = async ({ email, password, isStore }) => {
