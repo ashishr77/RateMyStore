@@ -20,7 +20,7 @@ const StoreDashboard = () => {
       setLoading(true);
       const res = await API.get('/store/ratings');
       
-      // Match the exact response structure from your backend
+      // Match the response from backend
       setStoreData({
         ratings: res.data.ratings || [],
         averageRating: parseFloat(res.data.averageRating) || 0,
